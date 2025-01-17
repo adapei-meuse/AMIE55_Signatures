@@ -6,13 +6,6 @@ Cette application web permet de générer des signatures personnalisées réalis
 
 ---
 
-## Contributeurs
-
-- Maxence Poette
-- Jorys Paulin
-
----
-
 ## Licence & Copyright
 
 © ADAPEI de la Meuse
