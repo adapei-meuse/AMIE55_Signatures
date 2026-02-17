@@ -1,10 +1,4 @@
-function copySignature() {
-    const html = document.getElementById("signaturePreview").innerHTML;
-
-    const blob = new Blob([html], { type: "text/html" });
-    const item = new ClipboardItem({ "text/html": blob });
-
-    navigator.clipboard.write([item]).then(() => {
-        alert("Signature copiée dans le presse-papier !");
-    });
+{
+  "logo": "img/logos/amie55.jpg",
+  "domain": "@amie55.com"
 }
