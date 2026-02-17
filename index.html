@@ -1,134 +1,22 @@
+<div class="signature-preview" id="signaturePreview">
+    <table style="border:none; border-collapse:collapse;">
+        <tr>
+            <td style="padding-right:15px; vertical-align:top;">
+                <img src="img/logos/amie55.jpg" alt="Logo" width="120">
+            </td>
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<title>Générateur de signature</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 20px;
-        display: flex;
-        gap: 40px;
-    }
-    .form-container {
-        width: 45%;
-    }
-    .preview-container {
-        width: 45%;
-    }
-    input, select {
-        width: 100%;
-        padding: 8px;
-        margin: 5px 0 15px 0;
-        font-size: 14px;
-    }
-    .signature-preview {
-        border: 1px solid #ccc;
-        padding: 15px;
-        width: 100%;
-    }
-    .signature-name {
-        font-size: 18px;
-        font-weight: bold;
-    }
-    ul {
-        list-style: none;
-        padding-left: 0;
-        margin: 5px 0 0 0;
-    }
-    li {
-        margin-bottom: 4px;
-    }
-</style>
-</head>
-<body>
-
-<div class="form-container">
-    <h2>Informations</h2>
-
-    <label>Prénom</label>
-    <input type="text" id="inputPrenom" placeholder="Jean">
-
-    <label>Nom</label>
-    <input type="text" id="inputNom" placeholder="Dupont">
-
-    <label>Fonction</label>
-    <input type="text" id="inputFonction" placeholder="Chef de service">
-
-    <label>Service / Établissement</label>
-    <input type="text" id="inputService" placeholder="Administration">
-
-    <label>Email</label>
-    <input type="text" id="inputEmail" placeholder="j.dupont">
-
-    <label>Domaine</label>
-    <select id="inputDomaine">
-        <option>@example.com</option>
-        <option>@entreprise.fr</option>
-    </select>
-
-    <label>Téléphone</label>
-    <input type="text" id="inputTel" placeholder="01 23 45 67 89">
-
-    <label>Mobile</label>
-    <input type="text" id="inputMobile" placeholder="06 12 34 56 78">
+            <td style="vertical-align:top;">
+                <div class="signature-name">
+                    <span id="outPrenom">Jean</span> <span id="outNom">Dupont</span>
+                </div>
+                <div id="outFonction">Chef de service</div>
+                <ul style="list-style:none; padding-left:0; margin:5px 0 0 0;">
+                    <li id="outService">Administration</li>
+                    <li>Email : <span id="outEmail">j.dupont</span><span id="outDomaine">@example.com</span></li>
+                    <li>Tél : <span id="outTel">01 23 45 67 89</span></li>
+                    <li>Mobile : <span id="outMobile">06 12 34 56 78</span></li>
+                </ul>
+            </td>
+        </tr>
+    </table>
 </div>
-
-<div class="preview-container">
-    <h2>Aperçu de votre signature</h2>
-
-    <div class="signature-preview" id="signaturePreview">
-        <div class="signature-name"><span id="outPrenom">Jean</span> <span id="outNom">Dupont</span></div>
-        <div id="outFonction">Chef de service</div>
-        <ul>
-            <li id="outService">Administration</li>
-            <li>Email : <span id="outEmail">j.dupont</span><span id="outDomaine">@example.com</span></li>
-            <li>Tél : <span id="outTel">01 23 45 67 89</span></li>
-            <li>Mobile : <span id="outMobile">06 12 34 56 78</span></li>
-        </ul>
-    </div>
-
-    <button onclick="downloadSignature()">Télécharger en image</button>
-</div>
-
-<script>
-// Mise à jour dynamique
-const bind = (inputId, outputId) => {
-    document.getElementById(inputId).addEventListener("input", e => {
-        document.getElementById(outputId).textContent = e.target.value;
-    });
-};
-
-bind("inputPrenom", "outPrenom");
-bind("inputNom", "outNom");
-bind("inputFonction", "outFonction");
-bind("inputService", "outService");
-bind("inputEmail", "outEmail");
-bind("inputTel", "outTel");
-bind("inputMobile", "outMobile");
-
-document.getElementById("inputDomaine").addEventListener("change", e => {
-    document.getElementById("outDomaine").textContent = e.target.value;
-});
-
-// Téléchargement image (HTML → PNG)
-function downloadSignature() {
-    const node = document.getElementById("signaturePreview");
-
-    html2canvas(node).then(canvas => {
-        const link = document.createElement("a");
-        link.download = "signature.png";
-        link.href = canvas.toDataURL();
-        link.click();
-    });
-}
-</script>
-
-<!-- HTML2Canvas CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
-</body>
-</html>
